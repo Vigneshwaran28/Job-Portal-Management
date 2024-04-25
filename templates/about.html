@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <!-- icon -->
+  <script src="https://kit.fontawesome.com/235004aab8.js" crossorigin="anonymous"></script>
+  <title>Personal Website</title>
+
+<style>
+body {
+  background-image: url(https://mocah.org/mocahbig/21090-Cat-Hacker.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  align-items: center;
+}
+
+/* scorll */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #121212;
+}
+
+/* scorll */
+
+body a {
+  color: white;
+  text-decoration: none;
+}
+
+body ul li {
+  list-style: none;
+  margin-top: 10px;
+}
+
+p {
+  font-size: 55px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+.main_content {
+  position: relative;
+  width: 64%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ /* Center text horizontally */
+     }
+
+.about h3 {
+  padding-top: 110px;
+}
+
+.about div {
+  height: 100%;
+  width: 90%;
+  border-radius: 0.5em;
+  background-color: #121212;
+}
+
+.about div p {
+  font-size: 20px;
+  margin: 20px 20px 20px 20px;
+}
+
+.skills ul {
+  height: 100%;
+  width: 60%;
+  border-radius: 0.5em;
+  background-color: #121212;
+  padding-bottom: 5px;
+}
+.skills ul li {
+  font-size: 20px;
+  margin: 20px 20px 20px 20px;
+}
+.skills ul li:first-child {
+  padding-top: 20px;
+}
+
+.products div {
+  height: 100%;
+  width: 90%;
+  border-radius: 0.5em;
+  background-color: #121212;
+}
+
+.products div p {
+  font-size: 20px;
+  margin: 20px 20px 20px 20px;
+}
+
+.contact ul {
+  height: 100%;
+  width: 30%;
+  border-radius: 0.5em;
+  background-color: #121212;
+  padding-bottom: 5px;
+}
+
+.contact ul li {
+  font-size: 20px;
+  margin: 20px 20px 20px 20px;
+}
+.contact ul li:first-child {
+  padding-top: 20px;
+}
+
+footer p {
+  text-align: center;
+  font-size: 15px;
+  margin-top: 40px;
+}
+
+</style>
+
+</head>
+
+<body>
+  <div class="main_content">
+    <div class="about" id="center_content">
+        <p>About Us</p>
+        <div>
+          <p>
+            Welcome to our job portal! We are dedicated to connecting talented individuals with exciting career opportunities. Our platform is designed to streamline the job search process for both job seekers and employers.
+          </p>
+        </div>
+        <div>
+          <p>
+            Whether you're a job seeker looking to advance your career or an employer seeking top talent, we're here to assist you every step of the way.
+          </p>
+        </div>
+        </div>
+        <div class="skills" id="center_content">
+          <p>Our Expertise</p>
+          <ul>
+            <li>Advanced job matching algorithms</li>
+            <li>User-friendly interface</li>
+            <li>Customized job search options</li>
+            <li>Efficient communication tools</li>
+          </ul>
+        </div>
+        <div class="products" id="center_content">
+          <p>Connect with Us</p>
+          <div>
+            <p>Follow us on Twitter -> https://twitter.com/YourJobPortal</p>
+          </div>
+          <div>
+            <p>Like us on Facebook -> https://www.facebook.com/YourJobPortal</p>
+          </div>
+          <div>
+            <p>Connect with us on LinkedIn -> https://www.linkedin.com/company/YourJobPortal</p>
+          </div>
+        </div>
+        <div class="contact" id="center_content">
+          <p>Contact Us</p>
+          <ul>
+            <li>~Email us~<br><a href="mailto:contact@yourjobportal.com">contact@yourjobportal.com</a></li>
+          </ul>
+        </div>
+
+        
+        <footer>
+          <p>We look forward to helping you achieve your career goals! <a href="#">Get Started Now</a></p>
+        </footer>
+  </div>
+</body>
+
+</html>

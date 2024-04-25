@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+   Applicant form
+{% endblock %}
+{% block content %}
+<style>
+    /* Add your custom CSS styles here */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container1 {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: fit-content;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    form {
+        margin-top: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+<body>
+<div class="container1">
+    <h1>Application Form</h1>
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <form method="POST">
+        {% csrf_token %}
+{% if form.errors %}
+    <ul>
+        {% for field, errors in form.errors.items %}
+            {% for error in errors %}
+                <li>{{ field|title }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<div class="form">
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="user" value="{{ request.user.id}}">
+        <input type="hidden" name="job" value="{{ job.id}}">
+        <input type="hidden" name="created_at" value="{{ job.created_at|date:'Y-m-d H:i:s' }}">
+        <p>
+            <label for="id_name">E mail:</label>
+            <input type="email" name="email" value="{{ request.user.email }}" disabled>
+        </p>
+        <p>
+            <label for="id_name">Job:</label>
+            <input type="text" name="job" value="{{ job.title }}" disabled>
+        </p>
+        <p>
+            <label for="id_name">Name:</label>
+            <input type="text" name="name">
+        </p>
+    
+        <p>
+            <label for="id_address">Address:</label>
+            {{ form.address }}
+        </p>
+        <p>        
+            <label for="id_skills">Skills:</label> <span>Separate  by commas.</span><br />
+            {{ form.skills }}
+        </p>
+        <p>        
+            <label for="id_dob">Date of Birth:</label>
+            <input type="date" id="id_dob" name="dob" value="{{ form.dob.value }}">
+        </p>
+        <p>        
+            <label for="id_experience">Experience:</label>
+            {{ form.experience }}
+        </p>
+        <p>        
+            <label for="id_education">Education:</label>
+            {{ form.education }}
+        </p>
+        <p>        
+            <label for="id_phoneNo">Phone Number:</label>
+            {{ form.phoneNo }}
+        </p>
+        <p>        
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </p>
+        <p>        
+            <label for="id_resume">Resume:</label>
+            {{ form.resume }}
+        </p>
+        <input type="submit" value="Done">
+    </form> 
+
+</div>
+
+{% endblock %}

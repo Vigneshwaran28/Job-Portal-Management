@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+
+
+{% block content %}
+
+    <div id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+         class="modal fade">
+        <div role="document" class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="exampleModalLabel" class="modal-title">Customer Login</h4>
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <input id="email_modal" type="text" placeholder="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input id="password_modal" type="password" placeholder="password" class="form-control">
+                        </div>
+                        <p class="text-center">
+                            <button type="button" class="btn btn-outline-white-primary"><i class="fa fa-sign-in"></i>
+                                Log in
+                            </button>
+                        </p>
+                    </form>
+                    <p class="text-center text-muted">Not registered yet?</p>
+                    <p class="text-center text-muted"><a href="client-register.html"><strong>Register now</strong></a>!
+                        It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- *** LOGIN MODAL END ***-->
+
+
+
+
+    <div class="wrapper" id="loading">
+        <div class="blue ball"></div>
+        <div class="red ball"></div>  
+        <div class="yellow ball"></div>  
+        <div class="green ball"></div>  
+      </div>
+    
+
+
+      {% if request.user.role == 'employer' %}
+      <table id="top_part">
+          <tr>
+              <td id="about" class="animated slideInLeft" style="animation-delay:2s;">
+                  <h1>Welcome, {{ request.user.first_name }}!</h1>
+                  <p>Give the Opportunities and Choose the best</p>
+              </td>
+              <td id="rightImage" class="animated jackInTheBox" style="animation-delay:2.2s;"></td>
+          </tr>
+      </table>
+      {% elif request.user.role == 'employee' %}
+      <table id="top_part">
+        <tr>
+            <td id="about" class="animated slideInLeft" style="animation-delay:2s;">
+                <h1>Welcome, <span style="text-wrap: nowrap;">{{ request.user.first_name }} {{ request.user.last_name }}</span>!!</h1>
+               
+                <p>Explore your Dream Job!</p>
+                
+
+            </td>
+            <td id="rightImage" class="animated jackInTheBox" style="animation-delay:2.2s;"></td>
+        </tr>
+    </table>
+
+
+
+  {% else %}
+      <table id="top_part" >
+          <tr>
+              <td id="about" class="animated slideInLeft" style="animation-delay:2s;">
+                  <h1>"Unlock Opportunities, Forge Futures!"</h1>
+                  <a class="btn_one" href="{% url 'accounts:employee-register' %}">JobSeeker</a>
+                  <a class="btn_one" href="{% url 'accounts:employer-register' %}">Employer</a>
+              </td>
+              <td id="rightImage" class="animated jackInTheBox" style="animation-delay:2.2s;"></td>
+          </tr>
+      </table>
+  {% endif %}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="job-form-section  -image">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="job-form-box" style="background-color:rgb(255, 255, 255); opacity: 0.8;">
+                        <h2 class="heading" style="color: rgb(0, 0, 0)">Find a job that will
+                           fit to your expertise.
+                        </h2>
+                        <form id="job-main-form" method="get" action="{% url 'jobs:searh' %}" class="job-main-form">
+                            <div class="controls" style="color: white;">
+                                <div class="row align-items-center">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="profession">Position</label>
+                                            <input type="text" id="profession" name="position"
+                                                   placeholder="Position you are looking for" class="form-control" style="color: black">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="location">Location</label>
+                                            <input type="text" id="location" name="location"
+                                                   placeholder="Any particular location?" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit"
+                                                class="btn btn-outline-white-primary job-main-form__button">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                                                  </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-jb">
+        <div class="container">
+            <h3 class="heading" style="color:rgb(0, 0, 0);">Featured jobs</h3>
+            <div class="row featured align-items-stretch">
+                {% for job in jobs %}
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="box-image-text bg-visible full-height">
+                            <div class="top">
+                                <a href="#">
+                                    <div class="jp_bg">
+                                        <img src="{% static 'img/jbbg.jpg' %}" alt="" class="img-fluid">
+                                    </div>
+                                    
+                                     </a>
+                            </div>
+                            <div class="content">
+                                <h5><a href="{% url 'jobs:jobs-detail' job.id %}">{{ job.title }}</a></h5>
+                                <p class="featured__details"><i class="fa fa-map-marker job__location"></i>
+                                    {{ job.location }}
+                                    {% if job.type == '1' %}
+                                        <span class="badge featured-badge badge-warning">Full time</span>
+                                    {% elif job.type == '2' %}
+                                        <span class="badge featured-badge badge-primary">Part time</span>
+                                    {% else %}
+                                        <span style="color: #ffffff;" class="badge featured-badge badge-success">Internship</span>
+                                    {% endif %}
+                                </p>
+                                <p>{{ job.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section class="tnd">
+        <div class="container ">
+            <h4 class="heading">Trending this month</h4>
+            {% for trending in trendings %}
+                <div class="job-listing  job-listing--last shadow-lg p-3 mb-5  rounded">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="row">
+                                 <div class="col-10">
+                                    <h4 class="job__title">
+                                        <img width="38" height="38" src="https://img.icons8.com/doodle/48/business.png" alt="business"/>
+                                        <a href="{% url 'jobs:jobs-detail' trending.id %}">{{ trending.title }}</a>
+                                    </h4>
+                                    <p class="job__company">
+                                        {{ trending.company_name }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10 col-md-3 col-lg-2 ml-auto">
+                            <img width="28" height="28" src="https://img.icons8.com/color/48/marker--v1.png" alt="marker--v1"/>
+                            {{ trending.location }}
+                        </div>
+                        <div class="col-10 col-md-3 col-lg-3 ml-auto">
+                            <p><img width="50" height="50" src="https://img.icons8.com/plasticine/100/clock--v1.png" alt="clock--v1"/>Posted {{ trending.created_at|timesince }}</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+        <!-- <div class="overlay"></div> -->
+        <section class="srch">
+            <div class="container1">
+                <div class="row">
+                    <div class="col-lg-12 text-center" >
+                        <p class="text-white h1">Start searching for your new job now! </p>
+                        <p class=""><a href="{% url 'jobs:jobs' %}" ><button class="sbtn">
+                            <svg class="svgIcon" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg>
+                           Explore
+                         </button> </a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

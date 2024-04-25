@@ -1,0 +1,14 @@
+<!-- search_results.html -->
+
+<h1>Search Results</h1>
+
+{% if query %}
+    <p>Showing results for "{{ query }}"</p>
+{% endif %}
+
+<ul>
+    {% for job in jobs %}
+        <li>{{ job.title }}</li>
+        <!-- Display other job details as needed -->
+    {% endfor %}
+</ul>

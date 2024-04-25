@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block styles %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-select/css/bootstrap-select.min.css' %}">
+{% endblock %}
+
+{% block content %}
+    <section class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="heading">Update Job Position</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger alert-dismissable">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>{{ field.name }} {{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
+                    <form id="job-main-form" method="post" action="" class="job-add-form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Job details</h4>
+                                <p class="text-muted text-small">Code and test programming for software and mobile apps and etc. Develop and deploy computer applications. Execute code builds to test and production environments. Fix bugs in existing code.</p>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group tittleone">
+                                <label for="title">Job Title</label>
+                                {{form.title}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="text">Job Description</label>
+                                {{form.description}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <label for="location">Location</label>
+                                {{form.location}}                           </div>
+                            <div class="col-lg-6 form-group">
+                                <label for="{{form.type.label}}">{{form.type.label}}*</label>
+                                <select id="{{for.type.auto_id}}" name="{{form.type.name}}" placeholder="Choose category"
+                                        class="form-control select2">
+                                    {% for value, label in form.fields.type.choices %}
+                                        <option value="{{value}}" {% if form.type.value == value %} selected {% endif %}>{{label}}</option>
+                                    {% endfor %}
+                                    
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="{{form.category.label}}">{{form.category.label}}</label>
+                                <select id="{{for.category.auto_id}}" name="{{form.category.name}}" placeholder="Choose category"
+                                        class="form-control select2">
+                                    {% for value, label in form.fields.category.choices %}
+                                        <option value="{{value}}" {% if form.category.value == value %} selected {% endif %}>{{label}}</option>
+                                    {% endfor %}
+                                    
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 form-group">
+                                <label for="apply_url">Apply URL <span
+                                        class="note">(users will apply on your website)</span></label>
+                                {{form.apply_url}}
+                            </div>
+                            <div class="col-xl-6 form-group">
+                                <label for="validity">Validity of the post</label>
+                                {{ form.last_date }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <hr class="margin-bottom--big">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Company details</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="company_name">Company name</label>
+                                {{form.company_name}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <label for="company_description">Company Description</label>
+                                {{form.company_description}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 form-group">
+                                <label for="company_website">Website</label>
+                                {{form.website}}
+                            </div>
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col-lg-12">
+                                <hr>
+                                <div class="checkbox text-center">
+                                    <label>
+                                        <input type="checkbox"> I agree with the <a href="#">Terms and conditions</a>.
+                                    </label>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <hr>
+                                <button type="submit" class="btn btn-success"><i class="fa fa-magic"></i>
+                                    Save and publish
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
